@@ -19,11 +19,25 @@ final class CartManager: ObservableObject {
         }
     }
 
+    func removeItems(at offsets: IndexSet) {
+        items.remove(atOffsets: offsets)
+    }
+
     func totalItems() -> Int {
         items.reduce(0) { $0 + $1.quantity }
     }
 
     func clearCart() {
         items.removeAll()
+    }
+}
+
+extension CartManager {
+    var totalCartPrice: Double {
+        items.reduce(0) { $0 + $1.totalPrice }
+    }
+
+    var formattedCartPrice: String {
+        String(format: "%.2f", totalCartPrice)
     }
 }

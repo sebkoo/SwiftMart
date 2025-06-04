@@ -12,3 +12,13 @@ struct CartItem: Identifiable, Equatable {
     let product: Product
     var quantity: Int
 }
+
+extension CartItem {
+    var totalPrice: Double {
+        Double(quantity) * product.price
+    }
+
+    var formattedTotalPrice: String {
+        String(format: "%.2f", totalPrice)
+    }
+}
