@@ -13,7 +13,7 @@ struct ProductListView: View {
     var body: some View {
         NavigationView {
             List(viewModel.products) { product in
-                VStack(alignment: .leading) {
+                NavigationLink(destination: ProductDetailView(product: product)) {
                     VStack(alignment: .leading) {
                         Text(product.title)
                             .bold()
