@@ -40,11 +40,6 @@
 			path = SwiftMartTests;
 			sourceTree = "<group>";
 		};
-		F10E65F12DF0C6E30035A1A2 /* SwiftMartUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = SwiftMartUITests;
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,7 +72,6 @@
 			children = (
 				F10E65D92DF0C6DC0035A1A2 /* SwiftMart */,
 				F10E65E72DF0C6E30035A1A2 /* SwiftMartTests */,
-				F10E65F12DF0C6E30035A1A2 /* SwiftMartUITests */,
 				F10E65D82DF0C6DC0035A1A2 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -152,9 +146,6 @@
 			);
 			dependencies = (
 				F10E65F02DF0C6E30035A1A2 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				F10E65F12DF0C6E30035A1A2 /* SwiftMartUITests */,
 			);
 			name = SwiftMartUITests;
 			packageProductDependencies = (
