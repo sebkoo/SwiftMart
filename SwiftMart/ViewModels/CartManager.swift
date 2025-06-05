@@ -12,7 +12,7 @@ final class CartManager: ObservableObject {
     @Published private(set) var items: [CartItem] = []
 
     func addToCart(product: Product) {
-        if let index = items.firstIndex(where: { $0.product.id == product.id }) {
+        if let index = items.firstIndex(where: { $0.product == product }) {
             items[index].quantity += 1
         } else {
             items.append(CartItem(product: product, quantity: 1))

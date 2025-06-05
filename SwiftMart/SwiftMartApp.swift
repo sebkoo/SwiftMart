@@ -9,9 +9,21 @@ import SwiftUI
 
 @main
 struct SwiftMartApp: App {
+    @StateObject var cartManager = CartManager()
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TabView {
+                ProductListView()
+                    .tabItem {
+                        Label("Home", systemImage: "house")
+                    }
+                CartView()
+                    .tabItem {
+                        Label("Cart", systemImage: "cart")
+                    }
+            }
+            .environmentObject(cartManager)
         }
     }
 }

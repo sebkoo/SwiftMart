@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct CartView: View {
+    let checkoutService = CheckoutService()
+    @State private var checkoutURL: URL?
+    @State private var showingSafari = false
     @EnvironmentObject var cartManager: CartManager
 
     var body: some View {
@@ -27,7 +30,7 @@ struct CartView: View {
                                     Text("Quantity: \(item.quantity)")
                                 }
                                 Spacer()
-                                Text(item.formattedTotalPrice)
+                                Text("$\(item.formattedTotalPrice)")
                             }
                         }
                         .onDelete { indexSet in
@@ -39,15 +42,26 @@ struct CartView: View {
                         Text("Total: ")
                             .font(.headline)
                         Spacer()
-                        Text(cartManager.formattedCartPrice)
+                        Text("$\(cartManager.formattedCartPrice)")
                             .bold()
                     }
                     .padding()
 
                     Button("Proceed to Checkout") {
-                        // Will link to Stripe flow later on
-                        print("Stripe Checkout to be implemented")
+                        Task {
+                            do {
+                                checkoutURL = try await checkoutService.createCheckoutSession(cartItems: cartManager.items)
+                                showingSafari = true
+                            } catch {
+                                print("Stripe error: \(error)")
+                            }
+                        }
                     }
+                    .sheet(isPresented: $showingSafari, content: {
+                        if let url = checkoutURL {
+                            CheckoutView(url: url)
+                        }
+                    })
                     .buttonStyle(.borderedProminent)
                     .padding(.bottom)
                 }
